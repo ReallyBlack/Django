@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的博客网</title>
+</head>
+<body>
+<h1>个人博客网</h1>
+<hr>
+{% for blog in blogs %}
+    <h3>标题:<a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></h3>
+    <p>----------------------------</p>
+    <h5>类型：{{ blog.blog_type }}</h5>
+    <h5>作者：{{ blog.author }}</h5>
+    <h5>发布时间：{{ blog.create_time|date:'Y-m-d H:n:s' }}</h5>
+    <p>{{ blog.content|truncatechars:20 }}</p>
+    <hr>
+{% endfor %}
+</body>
+</html>
