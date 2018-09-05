@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>博客类型{{ blog_type }}</title>
-</head>
-<body>
-<h1><a href="{% url 'home' %}">个人博客网</a></h1>
-<hr>
+{% extends 'Blog/base.html' %}
+{% block title %}{{ blog_type }}博客{% endblock title %}
+{% block content %}
 <h3>博客类型{{ blog_type }}</h3>
 <br>----------------------------
 {% for blog in blogs %}
-    <h2><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></h2>
+    <h4><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></h4>
     <br>----------------------------
 {% endfor %}
-</body>
-</html>
+{% endblock content %}
