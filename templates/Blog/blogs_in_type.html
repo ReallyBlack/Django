@@ -1,13 +1,6 @@
-{% extends 'base.html' %}
-{% block title %}{{ blog_type }}博客{% endblock title %}
+{% extends 'Blog/blog_list.html' %}
+{% block title %}{{ blog_type.type_name }}{% endblock title %}
 
-{% block nav_blog_active %}active{% endblock nav_blog_active %}
-
-{% block content %}
-<h3>博客类型{{ blog_type }}</h3>
-<br>----------------------------
-{% for blog in blogs %}
-    <h4><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></h4>
-    <br>----------------------------
-{% endfor %}
-{% endblock content %}
+{% block blog_list_title %}分类：{{ blog_type.type_name }}（共有{{ page_of_blog.paginator.count }}篇博客）
+    <span class="glyphicon glyphicon-share-alt"><a href="{% url 'blog_list' %}">返回博客列表</a></span>
+{% endblock blog_list_title %}
