@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}{{ blog.title }}{% endblock title %}
+
+{% block nav_blog_active %}active{% endblock nav_blog_active %}
+
 {% block content %}
     <h3>标题:{{ blog.title }}</h3>
     <p>----------------------------</p>
