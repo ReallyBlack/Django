@@ -2,15 +2,6 @@
     margin: 0px;
     padding: 0px;
 }
-div.nav{
-    background-color: #eee;
-    border-bottom: 1px solid #cccccc;
-}
-div.nav a{
-    text-decoration: none;
-    color: black;
-    padding: 5px 10px;
-}
-a.logo{
-    display: inline-block;
+body{
+    margin: 70px!important;
 }
