@@ -31,6 +31,9 @@
                 </div>
 
                 {# 分页的控件 #}
+                {# 如果没有博客，不现实页码 #}
+                {% if page_of_blog.paginator.count == 0 or page_of_blog.paginator.num_pages == 1%}
+                {% else %}
                 <ul class="pagination">
                     {# 上一页 #}
                     <li>
@@ -44,7 +47,11 @@
                         </li>
                     {# 全部页码 #}
                     {% for page_num in page_of_blog.paginator.page_range %}
+                        {% if page_num == page_of_blog.number %}
+                        <li class="active"><a href="?page={{ page_num }}">{{ page_num }}</a> </li>
+                        {% else %}
                         <li><a href="?page={{ page_num }}">{{ page_num }}</a> </li>
+                        {% endif %}
                     {% endfor %}
                     {# 下一页 #}
                     <li>
@@ -57,6 +64,7 @@
                         {% endif %}
                     </li>
                 </ul>
+                {% endif %}
             </div>
             <div class="hidden-xs col-sm-4 col-md-3 clo-lg-2">
                 <div class="panel panel-default">
