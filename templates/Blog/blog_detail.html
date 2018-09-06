@@ -9,7 +9,8 @@
             <div class="col-xs-10 col-xs-offset-1">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                      <h3 class="panel-title">{{ blog.title }}&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"><a href="{% url 'blog_list' %}">返回博客列表</a></span></h3>
+                      <h3 class="panel-title">{{ blog.title }}&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt">
+                          <a href="{% url 'blog_list' %}">返回博客列表</a></span></h3>
                   </div>
                   <div class="panel-body">
                       <h5><span class="glyphicon glyphicon-tag"><a href="{% url 'blogs_in_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a></span></h5>
@@ -18,6 +19,18 @@
                       <hr>
                       <p>{{ blog.content}}</p>
                   </div>
+                </div>
+                <div class="another">
+                    {% if previous_blog %}
+                        <p><a href="{% url 'blog_detail' previous_blog.pk %}">上一篇：{{ previous_blog.title }}</a></p>
+                    {% else %}
+                        <p>上一篇：没有了</p>
+                    {% endif %}
+                    {% if next_blog %}
+                        <p><a href="{% url 'blog_detail' next_blog.pk %}">下一篇：{{ next_blog.title }}</a></p>
+                    {% else %}
+                        <p>下一篇：没有了</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
