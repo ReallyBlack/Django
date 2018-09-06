@@ -17,14 +17,18 @@
                       </div>
                       <div class="panel-body">
                          {% for blog in page_of_blog.object_list %}
-                            <h3>标题:<a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></h3>
-                            <p>----------------------------</p>
-                            <h5><span class="glyphicon glyphicon-tag"><a href="{% url 'blogs_in_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a></span></h5>
-                            <h5><span class="glyphicon glyphicon-pencil">{{ blog.author }}</span></h5>
-                            <h5><span class="glyphicon glyphicon-time">{{ blog.create_time|date:'Y-m-d H:n:s' }}</span></h5>
-                            <p>{{ blog.content|truncatechars:20 }}</p>
-                            <hr>
-                            {% empty %}
+                             <h3>标题:<a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></h3>
+                             <p>----------------------------</p>
+                             <h5><span class="glyphicon glyphicon-tag">
+                                 <a href="{% url 'blogs_in_type' blog.blog_type.pk %}">
+                                 {{ blog.blog_type }}</a></span></h5>
+                             <h5><span class="glyphicon glyphicon-pencil"> {{ blog.author }}</span></h5>
+                             <h5><span class="glyphicon glyphicon-time">
+                                 {{ blog.create_time|date:'Y-m-d H:n:s' }}</span></h5>
+                             <h5><span>阅读量({{ blog.get_read_num }})</span></h5>
+                             <p>{{ blog.content|striptags|truncatechars:20 }}</p>
+                             <hr>
+                             {% empty %}
                                 <p>当前尚无博客</p>
                          {% endfor %}
                       </div>
@@ -74,12 +78,23 @@
                   <div class="panel-body">
                      <ul class="block_types">
                         {% for blog_type in blog_types%}
-                            <li><a href="{% url 'blogs_in_type' blog_type.pk%}">{{ blog_type.type_name }}</a></li>
+                            <li><a href="{% url 'blogs_in_type' blog_type.pk%}">{{ blog_type.type_name }}({{ blog_type.blog_count }})</a></li>
                             {% empty %}
                                 <li>无分类</li>
                         {% endfor %}
                     </ul>
                   </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">日期归档</div>
+                    <div class="panel-body">
+                        <ul style="list-style: none">
+                            {% for blog_date,blog_count in blog_dates.items %}
+                                <li><a href="{% url 'blog_in_date' blog_date.year blog_date.month %}">
+                                    {{ blog_date|date:'Y年m月' }}({{ blog_count }})</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

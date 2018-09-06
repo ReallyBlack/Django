@@ -1,0 +1,6 @@
+{% extends 'Blog/blog_list.html' %}
+{% block title %}{{ blog_type.type_name }}{% endblock title %}
+
+{% block blog_list_title %}日期：{{ blog_date }}（共有{{ page_of_blog.paginator.count }}篇博客）
+    <span class="glyphicon glyphicon-share-alt"><a href="{% url 'blog_list' %}">返回博客列表</a></span>
+{% endblock blog_list_title %}
