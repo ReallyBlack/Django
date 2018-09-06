@@ -24,8 +24,10 @@ def blog_detail(request, blog_pk):
 
     # 获得参数blog_pk，用于获得对应的博客数据，将数据存入到上下文
     context = dict()
-    print(blog_pk)
-    context['blog'] = get_object_or_404(Blog, pk=blog_pk)
+    blog = get_object_or_404(Blog, pk=blog_pk)
+    context['blog'] = blog
+    context['previous_blog'] = Blog.objects.filter(create_time__gt=blog.create_time).last()
+    context['next_blog'] = Blog.objects.filter(create_time__lt=blog.create_time).first()
     return render(request, 'Blog/blog_detail.html', context)
 
 
