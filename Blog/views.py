@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator  # 引入分页器
 from django.db.models import Count
 from Blog.models import Blog, BlogType
-from .method_for_blog import read_add_numm
+from read_statistics.method_for_blog import read_add_numm
 
 
 # 对博客数据进行初步的处理
